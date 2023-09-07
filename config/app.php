@@ -185,4 +185,10 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    // Backend api Path
+
+    'cms_api_path' => env('CMS_API_PATH', NULL)
+
+
 ];
