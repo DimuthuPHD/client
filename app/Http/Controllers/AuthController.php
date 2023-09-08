@@ -30,9 +30,9 @@ class AuthController extends Controller
         session()->put('auth_data', $auth['data']);
 
         if (JobseekerLogged()) {
-            return redirect()->route('jobSeeker.profile');
+            return redirect()->route('jobSeeker.dashboard');
         } elseif (ConsultantLogged()) {
-            return redirect()->route('consultant.profile');
+            return redirect()->route('consultant.dashboard');
         }
     }
 

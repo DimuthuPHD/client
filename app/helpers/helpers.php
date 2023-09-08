@@ -56,3 +56,15 @@ if (!function_exists('authDetail')) {
         return $userData;
     }
 }
+
+if (!function_exists('getUrlParameters')) {
+    function getUrlParameters($url, $parameter, $default = null)
+    {
+        $urlParts = parse_url($url);
+        $query = $urlParts['query'] ?? '';
+        parse_str($query, $queryParameters);
+        $parameter = $queryParameters[$parameter] ?? $default;
+
+        return $parameter;
+    }
+}

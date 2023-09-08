@@ -23,12 +23,14 @@ Route::post('login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 
-Route::group(['prefix' => 'job-seeker', 'as' => 'jobSeeker.', 'middleware' => ['check_auth:job_seeker']], function () {
+Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeker'])->group(function () {
+    Route::get('/dashboard', [JobSeekerController::class, 'index'])->name('dashboard');
     Route::get('/profile', [JobSeekerController::class, 'profile'])->name('profile');
     Route::get('/appointments', [JobSeekerController::class, 'appointments'])->name('appointments');
 });
 
-Route::group(['prefix' => 'consultant', 'as' => 'consultant.', 'middleware' => ['check_auth:consultant']], function () {
+Route::prefix('consultant')->as('consultant.')->middleware(['check_auth:consultant'])->group(function () {
+    Route::get('/dashboard', [ConsultantController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ConsultantController::class, 'profile'])->name('profile');
     Route::get('/appointments', [ConsultantController::class, 'appointments'])->name('appointments');
 });

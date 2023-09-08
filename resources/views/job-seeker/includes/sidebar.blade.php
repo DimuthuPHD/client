@@ -1,8 +1,8 @@
 <!-- Start -->
 <section class="bg-dashboard">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-xl-4 col-lg-4 col-md-5 col-12">
+            <div class="col-xl-3 col-lg-3 col-md-5 col-12">
                 <div class="rounded shadow overflow-hidden sticky-bar">
                     <div class="card border-0">
                         <img src="../assets/images/doctors/profile-bg.jpg" class="img-fluid" alt="">
@@ -11,19 +11,19 @@
                     <div class="text-center avatar-profile margin-nagative mt-n5 position-relative pb-4 border-bottom">
                         <img src="../assets/images/doctors/01.jpg" class="rounded-circle shadow-md avatar avatar-md-md"
                             alt="">
-                        <h5 class="mt-3 mb-1">Calvin Carlo</h5>
-                        <p class="text-muted mb-0">Orthopedic</p>
+                        <h5 class="mt-3 mb-1">{{authDetail('user.full_name')}}</h5>
+                        <p class="text-muted mb-0">Job Seeker</p>
                     </div>
 
                     <ul class="list-unstyled sidebar-nav mb-0">
                         <li class="navbar-item">
-                            <a href="doctor-dashboard.html" class="navbar-link">
+                            <a href="{{route('jobSeeker.dashboard')}}" class="navbar-link">
                                 <i class="ri-airplay-line align-middle navbar-icon"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="navbar-item">
-                            <a href="doctor-appointment.html" class="navbar-link">
+                            <a href="{{route('jobSeeker.appointments')}}" class="navbar-link">
                                 <i class="ri-calendar-check-line align-middle navbar-icon"></i>
                                 Appointment
                             </a>

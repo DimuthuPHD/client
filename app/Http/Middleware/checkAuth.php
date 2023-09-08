@@ -26,6 +26,6 @@ class checkAuth
             $success = true;
         }
 
-        return $success ? $next($request) : redirect()->route('home');
+        return $success ? $next($request) : redirect()->route('login');
     }
 }
