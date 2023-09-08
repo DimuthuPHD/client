@@ -28,17 +28,18 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Password <span class="text-danger">*</span></label>
-                                        <input type="password" name="password" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Password">
                                         <span class="text-danger">{{$errors->first('password')}}</span>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-12">
                                     <div class="d-flex justify-content-between">
                                         <div class="mb-3">
                                             <div class="form-check">
                                                 <input class="form-check-input align-middle" type="radio"
-                                                    name="user_type" value="job_seeker" id="job_seeker" checked>
+                                                    name="user_type" value="job_seeker" id="job_seeker"
+                                                    {{old('user_type', 'job_seeker' )=='job_seeker' ? 'checked' : null}}>
                                                 <label class="form-check-label" for="job_seeker">I am a Job
                                                     Seeeker</label>
                                             </div>
@@ -46,7 +47,8 @@
                                         <div class="mb-3">
                                             <div class="form-check">
                                                 <input class="form-check-input align-middle" type="radio"
-                                                    name="user_type" value="consultant" id="consultant">
+                                                    name="user_type" value="consultant" id="consultant"
+                                                    {{old('user_type')=='consultant' ? 'checked' : null}}>
                                                 <label class="form-check-label" for="consultant">I am a
                                                     Consultant</label>
                                             </div>
