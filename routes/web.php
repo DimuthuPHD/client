@@ -27,6 +27,7 @@ Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeke
     Route::get('/dashboard', [JobSeekerController::class, 'index'])->name('dashboard');
     Route::get('/profile', [JobSeekerController::class, 'profile'])->name('profile');
     Route::get('/appointments', [JobSeekerController::class, 'appointments'])->name('appointments');
+    Route::post('/update-profile', [JobSeekerController::class, 'updateprofile'])->name('updateprofile');
 });
 
 Route::prefix('consultant')->as('consultant.')->middleware(['check_auth:consultant'])->group(function () {

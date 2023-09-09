@@ -28,7 +28,7 @@ class AuthController extends Controller
     {
         $auth = $this->apiService->post('login', $request->validated());
         session()->put('auth_data', $auth['data']);
-
+        notify()->success('Welcome!');
         if (JobseekerLogged()) {
             return redirect()->route('jobSeeker.dashboard');
         } elseif (ConsultantLogged()) {
@@ -42,6 +42,7 @@ class AuthController extends Controller
 
         $this->apiService->get('logout');
         session()->forget('auth_data');
+        notify()->success('Successfully Logged out!');
         return redirect()->route('home');
     }
 

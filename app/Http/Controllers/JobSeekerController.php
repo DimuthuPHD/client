@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Jobseeker\UpdateProfileRequest;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
 
@@ -53,5 +54,20 @@ class JobSeekerController extends Controller
         $url = $page ? 'my-appointments' . $page : 'my-appointments';
         $appointments = $this->apiService->get($url)['data']['appointments'];
         return view('job-seeker.appointments')->withAppointments($appointments);
+    }
+
+
+    public function updateprofile(UpdateProfileRequest $request)
+    {
+        $userId = authDetail('user.id');
+        $data =  $request->except('_token');
+        $updated = $this->apiService->post("job-seeker/{$userId}/update", $data)['data']['user'];
+        $user = session()->get('auth_data');
+        $user['user'] = $updated;
+        notify()->success('User Details Updated!');
+        // dd($user);
+        session()->put('auth_data', $user);
+
+        return redirect()->route('jobSeeker.dashboard')->withSuccess('Profile Updated Successfully');
     }
 }

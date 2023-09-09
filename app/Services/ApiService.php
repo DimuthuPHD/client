@@ -18,6 +18,7 @@ class ApiService
             $client = new Client(['verify' => false, 'curl' => [CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4]]);
             $apiPath = config('app.cms_api_path');
             $apiPath = $apiPath . '/' . $path;
+
             $response = $client->request($method, $apiPath, [
                 'headers' => $headers,
                 'query' => $params,
@@ -36,6 +37,7 @@ class ApiService
                 throw ValidationException::withMessages($errorMessages);
             }
 
+
             return $decoded;
         } catch (\GuzzleHttp\Exception\ConnectException $ex) {
             Log::error('Connection Exception:', ['message' => $ex->getMessage()]);
@@ -48,6 +50,11 @@ class ApiService
     }
 
     function post(string $path = null, array $params = [])
+    {
+        return $this->getRequest('POST', $path, $params);
+    }
+
+    function patch(string $path = null, array $params = [])
     {
         return $this->getRequest('POST', $path, $params);
     }

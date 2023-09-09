@@ -28,15 +28,19 @@
                                 Appointment
                             </a>
                         </li>
-                        <li class="navbar-item"><a href="doctor-messages.html" class="navbar-link"><i
-                                    class="ri-mail-unread-line align-middle navbar-icon"></i> Messages</a></li>
-                        <li class="navbar-item"><a href="doctor-profile.html" class="navbar-link"><i
-                                    class="ri-user-line align-middle navbar-icon"></i> Profile</a></li>
-                        <li class="navbar-item"><a href="doctor-profile-setting.html" class="navbar-link"><i
-                                    class="ri-user-settings-line align-middle navbar-icon"></i> Profile Settings</a>
+                        <li class="navbar-item">
+                            <a href="doctor-messages.html" class="navbar-link">
+                                <i class="ri-mail-unread-line align-middle navbar-icon"></i> Messages
+                            </a>
                         </li>
-                        <li class="navbar-item"><a href="forgot-password.html" class="navbar-link"><i
-                                    class="ri-device-recover-line align-middle navbar-icon"></i> Forgot Password</a>
+                        <li class="navbar-item">
+                            <a href="{{route('jobSeeker.profile')}}" class="navbar-link">
+                                <i class="ri-user-line align-middle navbar-icon"></i> Profile
+                            </a>
+                        </li>
+                        <li class="navbar-item"><a href="forgot-password.html" class="navbar-link">
+                                <i class="ri-device-recover-line align-middle navbar-icon"></i> Forgot Password
+                            </a>
                         </li>
                     </ul>
                 </div>
