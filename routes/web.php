@@ -27,6 +27,8 @@ Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeke
     Route::get('/dashboard', [JobSeekerController::class, 'index'])->name('dashboard');
     Route::get('/profile', [JobSeekerController::class, 'profile'])->name('profile');
     Route::get('/appointments', [JobSeekerController::class, 'appointments'])->name('appointments');
+    Route::get('/appointments/create', [JobSeekerController::class, 'createAppointment'])->name('appointments.create');
+    Route::patch('/appointments/store', [JobSeekerController::class, 'StoreAppointment'])->name('appointments.store');
     Route::post('/update-profile', [JobSeekerController::class, 'updateprofile'])->name('updateprofile');
 });
 
@@ -34,4 +36,9 @@ Route::prefix('consultant')->as('consultant.')->middleware(['check_auth:consulta
     Route::get('/dashboard', [ConsultantController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ConsultantController::class, 'profile'])->name('profile');
     Route::get('/appointments', [ConsultantController::class, 'appointments'])->name('appointments');
+    Route::post('/update-profile', [ConsultantController::class, 'updateprofile'])->name('updateprofile');
+    Route::get('/appointments/create', [ConsultantController::class, 'createAppointment'])->name('appointments.create');
+    Route::patch('/appointments/store', [ConsultantController::class, 'StoreAppointment'])->name('appointments.store');
+    Route::get('/appointments/{appointment}/edit', [ConsultantController::class, 'editAppointment'])->name('appointments.edit');
+    Route::post('/appointments/{appointment}/update', [ConsultantController::class, 'updateAppointment'])->name('appointments.update');
 });

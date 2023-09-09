@@ -28,7 +28,7 @@
                         </li>
 
                         <li class="navbar-item">
-                            <a href="{{route('consultant.profile')}}l" class="navbar-link">
+                            <a href="{{route('consultant.profile')}}" class="navbar-link">
                                 <i class="ri-user-line align-middle navbar-icon"></i> Profile
                             </a>
                         </li>

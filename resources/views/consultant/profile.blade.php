@@ -2,225 +2,152 @@
 @section('content')
 @extends('consultant.includes.sidebar')
 @section('consultant-content')
+@php
+$userDetails = collect(authDetail());
+@endphp
+
 <div class="col-xl-8 col-lg-8 col-md-7 mt-4 pt-2 mt-sm-0 pt-sm-0">
     <h5 class="mb-0 pb-2">Schedule Timing</h5>
     <div class="rounded shadow mt-4">
-        <div class="p-4 border-bottom">
-            <h5 class="mb-0">Personal Information :</h5>
-        </div>
-
-        <div class="p-4 border-bottom">
-            <div class="row align-items-center">
-                <div class="col-lg-2 col-md-4">
-                    <img src="../assets/images/doctors/01.jpg"
-                        class="avatar avatar-md-md rounded-pill shadow mx-auto d-block" alt="">
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-5 col-md-8 text-center text-md-start mt-4 mt-sm-0">
-                    <h5 class="">Upload your picture</h5>
-                    <p class="text-muted mb-0">For best results, use an image at least 256px by 256px in
-                        either .jpg or .png format</p>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-5 col-md-12 text-lg-end text-center mt-4 mt-lg-0">
-                    <a href="#" class="btn btn-primary">Upload</a>
-                    <a href="#" class="btn btn-soft-primary ms-2">Remove</a>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-
         <div class="p-4">
-            <form>
+            <form action="{{route('consultant.updateprofile')}}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label">First Name</label>
-                            <input name="name" id="name" type="text" class="form-control" placeholder="First Name :">
+                            <label class="form-label" for="first_name">First Name</label>
+                            <input name="first_name" id="first_name" type="text" class="form-control"
+                                placeholder="First Name :" value="{{old('first_name', authDetail('user.first_name'))}}">
+                            <span class="text-danger">{{$errors->first('first_name')}}</span>
                         </div>
                     </div>
                     <!--end col-->
 
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input name="name" id="name2" type="text" class="form-control" placeholder="Last Name :">
+                            <label class="form-label" for="last_name">Last Name</label>
+                            <input name="last_name" id="last_name" type="text" class="form-control"
+                                placeholder="Last Name :" value="{{old('last_name', authDetail('user.last_name'))}}">
+                            <span class="text-danger">{{$errors->first('last_name')}}</span>
                         </div>
                     </div>
                     <!--end col-->
 
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label">Your Email</label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="Your email :">
+                            <label class="form-label" for="email">Your Email</label>
+                            <input name="email" id="email" type="email" class="form-control" placeholder="Your email :"
+                                value="{{old('email', authDetail('user.email'))}}">
+                            <span class="text-danger">{{$errors->first('email')}}</span>
                         </div>
                     </div>
                     <!--end col-->
 
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label">Phone no.</label>
-                            <input name="number" id="number" type="text" class="form-control" placeholder="Phone no. :">
+                            <label class="form-label" for="telephone">Phone no.</label>
+                            <input name="telephone" id="telephone" type="text" class="form-control"
+                                placeholder="Phone no. :" value="{{old('telephone', authDetail('user.telephone'))}}">
+                            <span class="text-danger">{{$errors->first('telephone')}}</span>
                         </div>
                     </div>
                     <!--end col-->
 
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label class="form-label">Your Bio Here</label>
-                            <textarea name="comments" id="comments" rows="4" class="form-control"
-                                placeholder="Bio :"></textarea>
+                            <label class="form-label" for="adddress">Address</label>
+                            <textarea id="adddress" name="adddress" rows="4" class="form-control"
+                                placeholder="Bio :">{!!old('address', authDetail('user.address'))!!}</textarea>
+                            <span class="text-danger">{{$errors->first('adddress')}}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="notes">Notes</label>
+                            <textarea id="notes" name="notes" rows="4" class="form-control"
+                                placeholder="Bio :">{!!old('address', authDetail('user.notes'))!!}</textarea>
+                            <span class="text-danger">{{$errors->first('notes')}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="password">New password :</label>
+                            <input type="password" name="password" class="form-control" placeholder="New password"
+                                autocomplete="new-password">
+                            <span class="text-danger">{{$errors->first('password')}}</span>
+                        </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Confirm New password :</label>
+                            <input type="password" name="password_confirmation" class="form-control"
+                                placeholder="New password" autocomplete="new-password">
+                            <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
                         </div>
                     </div>
                 </div>
-                <!--end row-->
 
                 <div class="row">
-                    <div class="col-sm-12">
-                        <input type="submit" id="submit" name="send" class="btn btn-primary" value="Save changes">
+                    <div class="col-lg-12 col-mt-4">
+                        <h4>Countries</h4>
                     </div>
-                    <!--end col-->
+                    @foreach ($countries as $country)
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <label class="form-check-label" for="Country_{{$country['id']}}">
+                                    {{$country['name']}} </label>
+                                <input type="checkbox" name="countries[]" id="Country_{{$country['id']}}"
+                                    value="{{$country['id']}}" class=" form-check-input" {{in_array($country['id'],
+                                    old('countries', $myCountries)) ? 'checked' : null}}>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <span class="text-danger">{{$errors->first('countries')}}</span>
                 </div>
-                <!--end row-->
-            </form>
-            <!--end form-->
-        </div>
-    </div>
 
-    <div class="rounded shadow mt-4">
-        <div class="p-4 border-bottom">
-            <h5 class="mb-0">Change Password :</h5>
-        </div>
-
-        <div class="p-4">
-            <form>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-mt-4">
+                        <h4>Job Types</h4>
+                    </div>
+                    @foreach ($jobTypes as $job_type)
+                    <div class="col-lg-2">
                         <div class="mb-3">
-                            <label class="form-label">Old password :</label>
-                            <input type="password" class="form-control" placeholder="Old password" required="">
+                            <div class="form-check">
+                                <label class="form-check-label" for="job_type_{{$job_type['id']}}">
+                                    {{$job_type['name']}} </label>
+                                <input type="checkbox" name="job_types[]" id="job_type_{{$job_type['id']}}"
+                                    value="{{$job_type['id']}}" class="form-check-input" {{in_array($job_type['id'],
+                                    old('job_types', $myJobTypes)) ? 'checked' : null}}>
+                            </div>
                         </div>
                     </div>
-                    <!--end col-->
+                    @endforeach
 
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">New password :</label>
-                            <input type="password" class="form-control" placeholder="New password" required="">
-                        </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">Re-type New password :</label>
-                            <input type="password" class="form-control" placeholder="Re-type New password" required="">
-                        </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-lg-12 mt-2 mb-0">
-                        <button class="btn btn-primary">Save password</button>
-                    </div>
-                    <!--end col-->
+                    <span class="text-danger">{{$errors->first('countries')}}</span>
                 </div>
-                <!--end row-->
-            </form>
+
         </div>
-    </div>
-
-    <div class="rounded shadow mt-4">
-        <div class="p-4 border-bottom">
-            <h5 class="mb-0">Account Notifications :</h5>
-        </div>
-
-        <div class="p-4">
-            <div class="d-flex justify-content-between pb-4">
-                <h6 class="mb-0 fw-normal">When someone mentions me</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" value="" id="customSwitch1">
-                    <label class="form-check-label" for="customSwitch1"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">When someone follows me</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch2" checked>
-                    <label class="form-check-label" for="customSwitch2"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">When shares my activity</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch3">
-                    <label class="form-check-label" for="customSwitch3"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">When someone messages me</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch4" checked>
-                    <label class="form-check-label" for="customSwitch4"></label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="rounded shadow mt-4">
-        <div class="p-4 border-bottom">
-            <h5 class="mb-0">Marketing Notifications :</h5>
-        </div>
-
-        <div class="p-4">
-            <div class="d-flex justify-content-between pb-4">
-                <h6 class="mb-0 fw-normal">There is a sale or promotion</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch5" checked>
-                    <label class="form-check-label" for="customSwitch5"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">Company news</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch6">
-                    <label class="form-check-label" for="customSwitch6"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">Weekly jobs</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch7">
-                    <label class="form-check-label" for="customSwitch7"></label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between py-4 border-top">
-                <h6 class="mb-0 fw-normal">Unsubscribe News</h6>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="customSwitch8" checked>
-                    <label class="form-check-label" for="customSwitch8"></label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="rounded shadow mt-4">
-        <div class="p-4 border-bottom">
-            <h5 class="mb-0 text-danger">Delete Account :</h5>
-        </div>
-
-        <div class="p-4">
-            <h6 class="mb-0 fw-normal">Do you want to delete the account? Please press below "Delete" button
-            </h6>
-            <div class="mt-4">
-                <button class="btn btn-danger">Delete Account</button>
+        <!--end row-->
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="submit" id="submit" name="save" class="btn btn-primary" value="Save changes">
             </div>
             <!--end col-->
         </div>
+        <!--end row-->
+        </form>
+        <!--end form-->
     </div>
 </div>
-<!--end col-->
+</div>
 @endsection
+
 @endsection

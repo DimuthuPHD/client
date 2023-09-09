@@ -27,13 +27,18 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request)
     {
         $auth = $this->apiService->post('login', $request->validated());
-        session()->put('auth_data', $auth['data']);
-        notify()->success('Welcome!');
-        if (JobseekerLogged()) {
-            return redirect()->route('jobSeeker.dashboard');
-        } elseif (ConsultantLogged()) {
-            return redirect()->route('consultant.dashboard');
+        if (isset($auth['data'])) {
+            session()->put('auth_data', $auth['data']);
+            notify()->success('Welcome!');
+            if (JobseekerLogged()) {
+                return redirect()->route('jobSeeker.dashboard');
+            } elseif (ConsultantLogged()) {
+                return redirect()->route('consultant.dashboard');
+            }
         }
+
+        notify()->error('Invali Credentials. Please try again!');
+        return redirect()->back();
     }
 
 

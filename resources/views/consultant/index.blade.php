@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-@extends('job-seeker.includes.sidebar')
-@section('job-seeker-content')
+@extends('consultant.includes.sidebar')
+@section('consultant-content')
 
 <div class="col-xl-8 col-lg-8 col-md-7 mt-4 mt-sm-0">
     <h5 class="mb-0">Dashboard</h5>

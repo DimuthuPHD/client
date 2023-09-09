@@ -16,8 +16,8 @@
 
                         <div class="col-sm-12 col-md-7 mt-4 mt-sm-0">
                             <div class="d-grid">
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#appointmentform">Appointment</a>
+                                <a href="{{route('consultant.appointments.create')}}" class="btn btn-primary">Create
+                                    New</a>
                             </div>
                         </div>
                         <!--end col-->
@@ -43,6 +43,7 @@
                             <th class="border-bottom p-3">Time from</th>
                             <th class="border-bottom p-3">Time to</th>
                             <th class="border-bottom p-3">Status</th>
+                            <th class="border-bottom p-3">Action</th>
                             <th class="border-bottom p-3" style="min-width: 150px;"> </th>
                         </tr>
                     </thead>
@@ -58,6 +59,7 @@
                             <td class="p-3">{{$appointment['from']}}</td>
                             <td class="p-3">{{$appointment['to']}}</td>
                             <td class="p-3">{{$appointment['status']}}</td>
+                            <td class="p-3"><a href="{{route('consultant.appointments.edit', $appointment['id'])}}">edit</a></td>
                         </tr>
                         @php
                         $count++;

@@ -27,6 +27,7 @@ class ApiService
 
             $data = $response->getBody()->getContents();
             $decoded = json_decode($data, true);
+            // dd($decoded);
             if ($decoded['success'] !== true) {
                 $errorMessages = [];
 
@@ -56,6 +57,6 @@ class ApiService
 
     function patch(string $path = null, array $params = [])
     {
-        return $this->getRequest('POST', $path, $params);
+        return $this->getRequest('PATCH', $path, $params);
     }
 }

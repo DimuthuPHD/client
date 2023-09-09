@@ -57,7 +57,7 @@ class JobSeekerController extends Controller
     }
 
 
-    public function updateprofile(UpdateProfileRequest $request)
+    public function updateprofile(Request $request)
     {
         $userId = authDetail('user.id');
         $data =  $request->except('_token');
@@ -65,7 +65,6 @@ class JobSeekerController extends Controller
         $user = session()->get('auth_data');
         $user['user'] = $updated;
         notify()->success('User Details Updated!');
-        // dd($user);
         session()->put('auth_data', $user);
 
         return redirect()->route('jobSeeker.dashboard')->withSuccess('Profile Updated Successfully');
