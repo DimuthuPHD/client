@@ -27,7 +27,7 @@ class ApiService
 
             $data = $response->getBody()->getContents();
             $decoded = json_decode($data, true);
-            // dd($decoded);
+
             if ($decoded['success'] !== true) {
                 $errorMessages = [];
 

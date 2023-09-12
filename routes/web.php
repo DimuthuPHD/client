@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsultantController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobSeekerController;
+use App\Http\Controllers\PubliController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::get('/consultant-list', [PubliController::class, 'consultantList'])->name('cntList');
 
 Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeker'])->group(function () {
     Route::get('/dashboard', [JobSeekerController::class, 'index'])->name('dashboard');
@@ -30,6 +32,7 @@ Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeke
     Route::get('/appointments/create', [JobSeekerController::class, 'createAppointment'])->name('appointments.create');
     Route::patch('/appointments/store', [JobSeekerController::class, 'StoreAppointment'])->name('appointments.store');
     Route::post('/update-profile', [JobSeekerController::class, 'updateprofile'])->name('updateprofile');
+    Route::get('consultant/{consultant}/slots', [JobSeekerController::class, 'availableSlots'])->name('availableSlots');
 });
 
 Route::prefix('consultant')->as('consultant.')->middleware(['check_auth:consultant'])->group(function () {
