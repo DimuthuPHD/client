@@ -78,7 +78,7 @@
 
 
                 <li><a href="" class="sub-menu-item">About</a></li>
-                <li><a href="" class="sub-menu-item">Consultants</a></li>
+                <li><a href="{{route('cntList')}}" class="sub-menu-item">Consultants</a></li>
                 <li><a href="" class="sub-menu-item">Contact</a></li>
 
                 @if (!isLoggedIn())

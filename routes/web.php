@@ -24,6 +24,7 @@ Route::post('login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::get('/consultant-list', [PubliController::class, 'consultantList'])->name('cntList');
+Route::get('/consultant/{consultant_id}', [PubliController::class, 'consultanShow'])->name('cntShow');
 
 Route::prefix('job-seeker')->as('jobSeeker.')->middleware(['check_auth:job_seeker'])->group(function () {
     Route::get('/dashboard', [JobSeekerController::class, 'index'])->name('dashboard');

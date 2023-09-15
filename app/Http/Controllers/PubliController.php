@@ -17,11 +17,16 @@ class PubliController extends Controller
 
     public function consultantList(Request $request)
     {
-        // return view('home.index');
         $data = $request->except('_token', '_method');
-        $consultants = $this->apiService->get("consultants", $data);
-        dd($consultants);
-        notify()->success('Appointment Updated Successfully');
-        return redirect()->route('consultant.appointments');
+        $consultants = $this->apiService->get("consultants", $data)['data']['data'];
+        $countries = $this->apiService->get('countries')['data']['data'];
+        $jobTypes = $this->apiService->get('job-types')['data']['data'];
+        return view('public.consultants')->withConsultants($consultants)->withCountries($countries)->withJobTypes($jobTypes);
+    }
+
+    public function consultanShow($consultant_id)
+    {
+        $consultant = $this->apiService->get("consultants/" . $consultant_id)['data'];
+        return view('public.consultant_show')->withConsultant($consultant);
     }
 }

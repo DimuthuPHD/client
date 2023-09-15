@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Jobseeker\UpdateProfileRequest;
+use App\Http\Requests\AppointmentRequest;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
 
@@ -84,10 +84,10 @@ class JobSeekerController extends Controller
         // $avaialbleSlots = $this->apiService->get('get-available-slots')['data']['data'];
     }
 
-    public function StoreAppointment(Request $request)
+    public function StoreAppointment(AppointmentRequest $request)
     {
-        $data = $request->except('_token', '_method');
-        $data['consultant_id'] = authDetail('user.id');
+        $data = $request->validated();
+        $data['job_seeker_id'] = authDetail('user.id');
         $appointment = $this->apiService->patch("appointment/store", $data);
         notify()->success('Appointment Created Successfully');
         return redirect()->route('consultant.appointments');
